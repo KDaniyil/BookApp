@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addBook } from '../../redux/books/actionCreators'
 import './BookForm.css'
 
 const BookForm = () => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
+    const dispatch = useDispatch()
+
     const handleSubmit = (e) => {
         e.preventDefault()
         //check if title and author are not empty
         if (title && author) {
+            const newBook = {
+                title,
+                author,
+            }
+            dispatch(addBook(newBook))
             setTitle('')
             setAuthor('')
         }
