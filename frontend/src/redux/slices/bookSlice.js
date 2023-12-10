@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
+import axios from 'axios'
 
 const initState = []
 
@@ -28,5 +29,14 @@ const bookSlice = createSlice({
 })
 
 export const { addBook, removeBook, toggleFavorite } = bookSlice.actions
+
+export const thunkFunction = async (dispatch, getState) => {
+    try {
+        const res = await axios.get('http://localhost:4000/random-book')
+        dispatch(addBook({ ...res.data, type: 'API' }))
+    } catch (err) {
+        alert(err.message)
+    }
+}
 
 export default bookSlice.reducer

@@ -57,7 +57,8 @@ const BookList = () => {
                                 {highlightText(book.title, filterTitle)} by{' '}
                                 <strong>
                                     {highlightText(book.author, filterAuthor)}
-                                </strong>
+                                </strong>{' '}
+                                ({book.type})
                             </div>
 
                             <div className="book-actions">
